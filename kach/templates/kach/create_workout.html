@@ -1,0 +1,47 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создание тренировки</title>
+      <link type="text/css" href="{% static 'kach/css/styles.css' %}" rel="stylesheet" />
+
+    <style>
+        .exercise-form {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Создание тренировки</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <h2>Упражнения</h2>
+        <div id="exercise-forms">
+            <div class="exercise-form">
+                <select name="exercises">
+                    {% for exercise in exercise_choices %}
+                    <option value="{{ exercise.id }}">{{ exercise.name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="number" name="repetitions" placeholder="Повторения">
+                <input type="number" name="weights" placeholder="Вес">
+            </div>
+        </div>
+        <button type="button" id="add-exercise">Добавить упражнение</button>
+
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <script>
+        document.getElementById('add-exercise').addEventListener('click', function() {
+            const exerciseForm = document.querySelector('.exercise-form');
+            const clonedForm = exerciseForm.cloneNode(true);
+            document.getElementById('exercise-forms').appendChild(clonedForm);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{% static 'kach/css/styles.css' %}" rel="stylesheet" />
+  <title>Создание типа упражнения</title>
+  <script>
+    function transliterate(text) {
+      var cyrillicChars = {
+        "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "e", "ё": "yo", "ж": "zh", "з": "z",
+        "и": "i", "й": "y", "к": "k", "л": "l", "м": "m", "н": "n", "о": "o", "п": "p", "р": "r",
+        "с": "s", "т": "t", "у": "u", "ф": "f", "х": "h", "ц": "ts", "ч": "ch", "ш": "sh", "щ": "shch",
+        "ъ": "", "ы": "y", "ь": "", "э": "e", "ю": "yu", "я": "ya",
+        "А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D", "Е": "E", "Ё": "YO", "Ж": "ZH", "З": "Z",
+        "И": "I", "Й": "Y", "К": "K", "Л": "L", "М": "M", "Н": "N", "О": "O", "П": "P", "Р": "R",
+        "С": "S", "Т": "T", "У": "U", "Ф": "F", "Х": "H", "Ц": "TS", "Ч": "CH", "Ш": "SH", "Щ": "SHCH",
+        "Ъ": "", "Ы": "Y", "Ь": "", "Э": "E", "Ю": "YU", "Я": "YA"
+      };
+
+      return text.replace(/[а-яА-ЯёЁ]/g, function(char) {
+        return cyrillicChars[char] || char;
+      });
+    }
+
+    function generateSlug() {
+      var nameInput = document.getElementById("id_name");
+      var slugInput = document.getElementById("id_slug");
+
+      var nameValue = nameInput.value.trim();
+      var slugValue = transliterate(nameValue).toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+      slugInput.value = slugValue;
+    }
+  </script>
+</head>
+<body>
+  <h1>Создание типа упражнения</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="button" onclick="generateSlug()">Генерировать Slug</button>
+
+    <button type="submit">Сохранить</button>
+  </form>
+</body>
+</html>

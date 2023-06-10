@@ -1,0 +1,21 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" href="{% static 'kach/css/styles.css' %}" rel="stylesheet" />
+    <title>{% block title%} {% endblock%}</title>
+</head>
+<body>
+  <header>
+    <h1>Фитнес-дневник</h1>
+  </header>
+    {% block context %}
+    {% endblock %}
+      <footer>
+    <p>&copy; 2023 Фитнес-дневник. Все права защищены.</p>
+  </footer>
+</body>
+</html>

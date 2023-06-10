@@ -1,0 +1,29 @@
+{% extends 'kach/base.html'%}
+
+{% block title %} Список упражнений {% endblock %}
+
+{% block context %}
+<ul class="list-articles">
+	{% for exercise in exercises %}
+			<li><div class="article-panel">
+	<p class="first">Категория: {{exercise.exercise_type}}</p>
+	<p class="last">Дата: {{exercise.created_at|date:"d-m-Y H:i:s"}}</p>
+</div>
+
+<!--{% if p.photo %}-->
+<!--	<p><img class="img-article-left thumb" src="{{p.photo.url}}"></p>-->
+<!--{% endif %}-->
+
+				<h2>{{exercise.name}}</h2>
+	{% autoescape on %}
+	{{exercise.content|linebreaks|truncatewords:50}}
+	{% endautoescape %}
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="{{ exercise.get_absolute_url }}">Читать пост</a></p>
+			</li>
+	{% endfor %}
+</ul>
+
+{% endblock %}
+
+

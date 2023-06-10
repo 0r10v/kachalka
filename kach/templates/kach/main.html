@@ -1,0 +1,23 @@
+{% extends 'kach/base.html'%}
+
+
+{% block title %} Фитнес-дневник {% endblock %}
+{% block context %}
+
+
+  <nav>
+    <ul>
+      <li><a href="{% url 'create_exercise' %}">Добавить упражнение</a></li>
+      <li><a href="{% url 'create_exercise_type' %}">Добавить тип упражнения</a></li>
+      <li><a href="{% url 'create_workout' %}">Добавить тренировку</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h2>Добро пожаловать в фитнес-дневник!</h2>
+    <p>Здесь вы можете вести записи о своих упражнениях, типах упражнений и тренировках.</p>
+  </main>
+
+
+{% endblock %}
+
