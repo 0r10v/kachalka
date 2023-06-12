@@ -22,8 +22,9 @@ urlpatterns = [
     path('exercise/create/', views.create_exercise, name='create_exercise'),
     path('exercise_type/create/', views.create_exercise_type, name='create_exercise_type'),
     path('workout/create/', views.create_workout, name='create_workout'),
+    path('exercise/<slug:slug>/', views.ExerciseDetailView.as_view(), name='exercise_detail'),
     path('exercise/', views.ExerciseListView.as_view(), name='exercise_list'),
-    path('exercise/<int:exercise_id>/', views.exercise_detail, name='exercise_detail'),
+    # path('exercise_type/', views.exercise_type, name='create_exercise_type'),
     path('workout/', views.workout_list, name='workout_list'),
     path('workout/<int:workout_id>/', views.workout_detail, name='workout_detail'),
 ]

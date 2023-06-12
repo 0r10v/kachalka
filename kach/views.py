@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import *
 from .forms import *
 
@@ -20,9 +20,15 @@ class ExerciseListView(ListView):
     # queryset =
 
 
-def exercise_detail(request, exercise_id):
-    exercise = get_object_or_404(Exercise, pk=exercise_id)
-    return render(request, 'kach/exercise_detail.html', {'exercise': exercise})
+class ExerciseDetailView(DetailView):
+    template_name = 'kach/exercise_detail.html'
+    model = Exercise
+    context_object_name = 'exercise'
+
+
+# def exercise_detail(request, exercise_id):
+#     exercise = get_object_or_404(Exercise, pk=exercise_id)
+#     return render(request, 'kach/exercise_detail.html', {'exercise': exercise})
 
 
 def workout_list(request):

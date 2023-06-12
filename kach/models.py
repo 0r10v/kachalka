@@ -13,7 +13,7 @@ class Exercise(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('exercise_list', args=[self.slug, ])
+        return reverse('exercise_detail', args=[self.slug, ])
 
 
 class ExerciseType(models.Model):
